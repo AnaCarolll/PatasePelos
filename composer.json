@@ -74,6 +74,7 @@
         "start": [
             "Composer\\Config::disableProcessTimeout",
             "php ./bin/hyperf.php start"
-        ]
+        ],
+        "migration": "php bin/hyperf.php migrate"
     }
 }

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('pets', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->datetimes();
+            $table->string('nome');
+            $table->date('data_nascimento');
         });
     }
 
