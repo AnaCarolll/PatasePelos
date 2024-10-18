@@ -19,7 +19,16 @@ class PetsController extends AbstractController
         $data = $request->all();
 
         return $response->json([
-            'message' => 'pets listado com sucesso!',
+            'message' => 'pet listado com sucesso!',
+        ]);
+    }
+
+    public function delete(RequestInterface $request, ResponseInterface $response)
+    {
+        $data = $request->all();
+
+        return $response->json([
+            'message' => 'pet removido com sucesso!',
         ]);
     }
 }
