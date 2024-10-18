@@ -31,4 +31,13 @@ class PetsController extends AbstractController
             'message' => 'pet removido com sucesso!',
         ]);
     }
+
+    public function update(RequestInterface $request, ResponseInterface $response)
+    {
+        $data = $request -> all();
+
+        return $response ->json([
+            'message' => 'pet atualizado com sucesso!',
+        ]);
+    }
 }
