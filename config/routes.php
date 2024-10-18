@@ -11,8 +11,8 @@ declare(strict_types=1);
  */
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::addRoute(['POST'], '/registro', 'App\Controller\IndexController@registro');
 
-Router::get('/favicon.ico', function () {
-    return 'aopa';
-});
+//Router::get('/favicon.ico', function () {
+//    return 'aopa';
+//});

@@ -49,7 +49,5 @@ WORKDIR /opt/www
 COPY . /opt/www
 RUN composer install --no-dev -o && php bin/hyperf.php
 
+CMD ["/var/www/hyper.sh"]
 EXPOSE 9501
-
-ENTRYPOINT ["php", "/opt/www/bin/hyperf.php", "start"]
-RUN php bin/hyperf.php start

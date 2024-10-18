@@ -8,7 +8,7 @@ services:
     volumes:
       - ./:/opt/www
     ports:
-      - 9502:9501
+      - 9501:9501
     environment:
       - APP_ENV=dev
       - SCAN_CACHEABLE=false
