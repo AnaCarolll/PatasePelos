@@ -14,4 +14,12 @@ class PetsController extends AbstractController
             'message' => 'pets cadastrado com sucesso!',
         ]);
     }
+    public function list(RequestInterface $request, ResponseInterface $response)
+    {
+        $data = $request->all();
+
+        return $response->json([
+            'message' => 'pets listado com sucesso!',
+        ]);
+    }
 }

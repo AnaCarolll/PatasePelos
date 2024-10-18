@@ -15,6 +15,7 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addGroup('/pet/', function (){
     Router::post('registro','App\Controller\PetsController@register');
+    Router::get('listagem','App\Controller\PetsController@list');
 });
 
 
