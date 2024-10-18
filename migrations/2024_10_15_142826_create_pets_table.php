@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->date('data_nascimento');
+            $table->timestamps();
         });
 
     }

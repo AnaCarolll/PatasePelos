@@ -17,7 +17,7 @@ Router::addGroup('/pet/', function (){
     Router::post('registro','App\Controller\PetsController@register');
     Router::get('listagem','App\Controller\PetsController@list');
     Router::delete('deletar','App\Controller\PetsController@delete');
-    Router::put('ataulizar','App\Controller\PetsController@update');
+    Router::put('atualizar','App\Controller\PetsController@update');
 });
 
 

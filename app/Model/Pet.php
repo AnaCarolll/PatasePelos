@@ -26,4 +26,6 @@ class Pet extends Model
         'data_nascimento' => 'date',
 
     ];
+
+
 }
