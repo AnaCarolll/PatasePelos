@@ -72,14 +72,29 @@ class PetsController extends AbstractController
             ]);
     }
 
-    public function update(RequestInterface $request, ResponseInterface $response)
+    public function update(RequestInterface $request, ResponseInterface $response, $id)
     {
 
         $data = $request -> all();
 
-        return $response ->json([
-            'message' => 'pet atualizado com sucesso!',
+        $pet = Pet::find($id);
 
-        ]);
+        if(!$pet){
+            return $response -> json([
+                'menssage' => 'O pet não foi encontrado!',
+            ]);
+        }
+
+        $pet -> nome = $data['nome']?? $pet -> nome;
+        $pet -> data_nascimento = $data['data_nascimento']?? $pet -> data_nascimento;
+
+        $pet -> save();
+
+
+      return $response ->json([
+           'message' => 'pet atualizado com sucesso!',
+          'data' => $pet,
+
+       ]);
     }
 }
