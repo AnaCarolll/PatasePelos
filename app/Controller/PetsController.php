@@ -36,28 +36,50 @@ class PetsController extends AbstractController
     }
     public function list(RequestInterface $request, ResponseInterface $response)
     {
-        $data = $request->all();
+        $pets =  Pet::all();
+
+        if ($pets->isEmpty()){
+            return $response->json([
+                'message' => 'pets não encontrado',
+                'data' => [],
+            ]);
+        }
+
 
         return $response->json([
             'message' => 'pet listado com sucesso!',
+            'data' =>$pets,
         ]);
     }
 
     public function delete(RequestInterface $request, ResponseInterface $response)
     {
-        $data = $request->all();
+        //$data = $request->all();
 
-        return $response->json([
-            'message' => 'pet removido com sucesso!',
-        ]);
+        $id = $request->input('id');
+
+        $pet = Pet::find($id);
+
+        if($pet){
+            $pet->delete();
+
+            return $response -> json([
+                'message' => 'Pet removido com sucesso!'
+            ]);
+        }
+            return $response -> json([
+                'message' => 'Pet não encontrado!'
+            ]);
     }
 
     public function update(RequestInterface $request, ResponseInterface $response)
     {
+
         $data = $request -> all();
 
         return $response ->json([
             'message' => 'pet atualizado com sucesso!',
+
         ]);
     }
 }
