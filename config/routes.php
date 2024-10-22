@@ -11,11 +11,11 @@ declare(strict_types=1);
  */
 use Hyperf\HttpServer\Router\Router;
 
-Router::addGroup('/pet/', function (){
+Router::addGroup('/pet', function (){
     Router::post('','App\Controller\PetsController@register');
-    Router::get('listagem','App\Controller\PetsController@list');
-    Router::delete('deletar','App\Controller\PetsController@delete');
-    Router::put('atualizar/{id}','App\Controller\PetsController@update');
+    Router::get('/listagem','App\Controller\PetsController@list');
+    Router::delete('/deletar','App\Controller\PetsController@delete');
+    Router::put('/atualizar/{id}','App\Controller\PetsController@update');
 });
 
 
