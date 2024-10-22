@@ -5,18 +5,19 @@ namespace App\Controller;
 use App\Model\Pet;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Contract\RequestInterface;
+use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\Paginator\Paginator;
 class PetsController extends AbstractController
 {
-    public function register(RequestInterface $request, ResponseInterface $response)
+    public function register()
     {
-        $data = $request->all();
+        $data = $this->request->all();
 
 
         //valida os dados
 
         if(empty($data['nome']) || empty($data['data_nascimento'])){
-            return $response->json([
+            return $this->response->json([
                 'error' => 'invalid data'
             ], 400);
         }
@@ -30,11 +31,13 @@ class PetsController extends AbstractController
 
         //retorna a resposta com sucesso
 
-        return $response->json([
+        return $this->response->json([
             'message'=>'pets cadastrado com sucesso!',
             'pets'=>$pets
         ]);
     }
+
+
     public function list(RequestInterface $request, ResponseInterface $response)
     {
         $pets =  Pet::all();
