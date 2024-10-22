@@ -53,6 +53,7 @@ class PetsController extends AbstractController
         ]);
     }
 
+
     public function delete()
     {
         //$data = $request->all();
@@ -72,6 +73,7 @@ class PetsController extends AbstractController
                 'message'=>'Pet não encontrado!'
             ]);
     }
+
 
     public function update(RequestInterface $request, ResponseInterface $response, $id)
     {
