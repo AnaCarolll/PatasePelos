@@ -12,8 +12,6 @@ class PetsController extends AbstractController
     public function register()
     {
         $data = $this->request->all();
-
-
         //valida os dados
 
         if(empty($data['nome']) || empty($data['data_nascimento'])){
@@ -55,22 +53,22 @@ class PetsController extends AbstractController
         ]);
     }
 
-    public function delete(RequestInterface $request, ResponseInterface $response)
+    public function delete()
     {
         //$data = $request->all();
 
-        $id = $request->input('id');
+        $id =$this->request->input('id');
 
         $pet = Pet::find($id);
 
         if($pet){
             $pet->delete();
 
-            return $response->json([
+            return $this->response->json([
                 'message'=>'Pet removido com sucesso!'
             ]);
         }
-            return $response->json([
+            return $this->response->json([
                 'message'=>'Pet não encontrado!'
             ]);
     }
