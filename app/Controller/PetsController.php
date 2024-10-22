@@ -75,15 +75,15 @@ class PetsController extends AbstractController
     }
 
 
-    public function update(RequestInterface $request, ResponseInterface $response, $id)
+    public function update($id)
     {
 
-        $data = $request->all();
+        $data = $this->request->all();
 
         $pet = Pet::find($id);
 
         if(!$pet){
-            return $response->json([
+            return $this->response->json([
                 'menssage'=>'O pet não foi encontrado!',
             ]);
         }
@@ -94,7 +94,7 @@ class PetsController extends AbstractController
         $pet->save();
 
 
-      return $response->json([
+      return $this->response->json([
            'message'=>'pet atualizado com sucesso!',
           'data'=>$pet,
 
