@@ -37,20 +37,19 @@ class PetsController extends AbstractController
         ]);
     }
 
-
-    public function list(RequestInterface $request, ResponseInterface $response)
+    public function list()
     {
         $pets =  Pet::all();
         $pets = Pet::paginate(10);
 
         if ($pets->isEmpty()){
-            return $response->json([
+            return $this->response->json([
                 'message'=>'pets não encontrado',
                 'data'=>[],
             ]);
         }
 
-        return $response->json([
+        return $this->response->json([
             'message'=>'pet listado com sucesso!',
             'data'=>$pets,
         ]);
