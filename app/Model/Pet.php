@@ -21,10 +21,9 @@ class Pet extends Model
     ];
 
     protected array $casts = [
-        'id' => 'integer',
-        'nome' => 'string',
-        'data_nascimento' => 'date',
-
+        'id'=>'integer',
+        'nome'=>'string',
+        'data_nascimento'=>'date',
     ];
 
 

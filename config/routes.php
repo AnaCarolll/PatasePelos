@@ -11,8 +11,6 @@ declare(strict_types=1);
  */
 use Hyperf\HttpServer\Router\Router;
 
-//Router::addRoute(['POST'], '/registro', 'App\Controller\PetsController@register');
-
 Router::addGroup('/pet/', function (){
     Router::post('registro','App\Controller\PetsController@register');
     Router::get('listagem','App\Controller\PetsController@list');
@@ -22,7 +20,3 @@ Router::addGroup('/pet/', function (){
 
 
 
-
-//Router::get('/favicon.ico', function () {
-//    return 'aopa';
-//});
