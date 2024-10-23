@@ -14,9 +14,9 @@ use App\Controller\PetsController;
 use Hyperf\HttpServer\Router\Router;
 
 Router::addGroup('/pet', function (){
-    Router::get('','App\Controller\PetsController@list');  //lista todos
-    Router::get('/{id}','App\Controller\PetsController@list');  //lista um em especifico
-    Router::post('','App\Controller\PetsController@register');
+    Router::get('',[PetsController::class, 'list']);  //lista todos
+    //Router::get('/{id}',[PetsController::class]);  //lista um em especifico
+    Router::post('',[PetsController::class, 'store']); //cadastro de pets
     Router::put('/{id}',[PetsController::class, 'update']);
     Router::delete('/{id}',[\App\Controller\PetsController::class, 'destroy']);
 });

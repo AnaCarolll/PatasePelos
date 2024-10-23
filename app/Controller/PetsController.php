@@ -9,7 +9,7 @@ use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\Paginator\Paginator;
 class PetsController extends AbstractController
 {
-    public function register()
+    public function store()
     {
         $data = $this->request->all();
         //valida os dados
