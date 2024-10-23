@@ -53,17 +53,15 @@ class PetsController extends AbstractController
         ]);
     }
 
-
-    public function destroy()
+    public function destroy($id)
     {
-        //$data = $request->all();
 
-        $id =$this->request->input('id');
+        $data = $this->request->all();
 
         $pet = Pet::find($id);
 
         if($pet){
-            $pet->delete();
+          Pet::destroy($id);
 
             return $this->response->json([
                 'message'=>'Pet removido com sucesso!'
@@ -73,7 +71,6 @@ class PetsController extends AbstractController
                 'message'=>'Pet não encontrado!'
             ]);
     }
-
 
     public function update($id)
     {
