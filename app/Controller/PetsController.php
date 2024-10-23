@@ -54,7 +54,7 @@ class PetsController extends AbstractController
     }
 
 
-    public function delete()
+    public function destroy()
     {
         //$data = $request->all();
 
