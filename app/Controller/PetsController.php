@@ -35,7 +35,7 @@ class PetsController extends AbstractController
         ]);
     }
 
-    public function list()
+    public function index()
     {
         $pets =  Pet::all();
         $pets = Pet::paginate(10);
@@ -52,6 +52,29 @@ class PetsController extends AbstractController
             'data'=>$pets,
         ]);
     }
+
+
+
+    public function show($id){
+
+        $pet = Pet::find($id);
+
+        if($pet){
+
+            return $this->response->json([
+                'message'=>'pet encontrado com sucesso!',
+                'data'=>$pet
+            ], 200);
+        } else{
+            return $this->response->json([
+                'status' => 'error',
+                'message' =>'Pet not found!'
+            ],404);
+        }
+    }
+
+
+
 
     public function destroy($id)
     {
