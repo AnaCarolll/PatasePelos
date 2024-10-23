@@ -7,6 +7,7 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\Paginator\Paginator;
+use Carbon\carbon;
 class PetsController extends AbstractController
 {
     public function store()
@@ -53,8 +54,6 @@ class PetsController extends AbstractController
         ]);
     }
 
-
-
     public function show($id){
 
         $pet = Pet::find($id);
@@ -72,9 +71,6 @@ class PetsController extends AbstractController
             ],404);
         }
     }
-
-
-
 
     public function destroy($id)
     {
@@ -97,9 +93,7 @@ class PetsController extends AbstractController
 
     public function update($id)
     {
-
         $data = $this->request->all();
-
         $pet = Pet::find($id);
 
         if(!$pet){
@@ -107,16 +101,18 @@ class PetsController extends AbstractController
                 'menssage'=>'O pet não foi encontrado!',
             ]);
         }
-
         $pet->nome = $data['nome']?? $pet -> nome;
-        $pet->data_nascimento = $data['data_nascimento']?? $pet -> data_nascimento;
+
+        if(isset($data['data_nascimento'])){
+            $pet ->data_nascimento =  Carbon::createFromFormat('d/m/Y', $data['data_nascimento'])->format('Y-m-d');
+        }
+
 
         $pet->save();
 
-
-      return $this->response->json([
-           'message'=>'pet atualizado com sucesso!',
-          'data'=>$pet,
+            return $this->response->json([
+            'message'=>'pet atualizado com sucesso!',
+            'data'=>$pet,
 
        ]);
     }

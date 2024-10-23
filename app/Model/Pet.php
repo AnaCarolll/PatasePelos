@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Hyperf\Database\Model\Relations\BelongsTo;
 use Hyperf\DbConnection\Model\Model;
+
 
 /**
  * @property int $id
@@ -13,6 +15,9 @@ use Hyperf\DbConnection\Model\Model;
  */
 class Pet extends Model
 {
+
+
+
     protected ?string $table = 'pets';
 
     protected array $fillable = [
@@ -26,5 +31,7 @@ class Pet extends Model
         'data_nascimento'=>'date',
     ];
 
+    public function especies():BelongsTo{
+        return $this->belongsTo(Especie::class, 'especie_id');}
 
 }
