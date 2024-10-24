@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
+use Hyperf\Database\Model\Relations\HasMany;
 use Hyperf\DbConnection\Model\Model;
 
 /**
@@ -11,7 +12,7 @@ use Hyperf\DbConnection\Model\Model;
  * @property string $descricao
  * @property string $nome
  */
-class especie extends Model
+class Especie extends Model
 {
 
     protected ?string $table = 'especie';
@@ -19,6 +20,7 @@ class especie extends Model
     protected array $fillable = [
         'nome',
         'descricao',
+        'especie_id',
     ];
 
     protected array $casts = [
@@ -26,4 +28,10 @@ class especie extends Model
         'nome' => 'string',
         'descricao' => 'string',
     ];
+
+
+    public function pets(): HasMany{
+        return $this->hasMany(Pet::class, 'especie_id', 'id');
+    }
+
 }

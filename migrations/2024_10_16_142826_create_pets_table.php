@@ -6,9 +6,7 @@ use Hyperf\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('pets', function (Blueprint $table) {
@@ -16,13 +14,18 @@ return new class extends Migration
             $table->string('nome');
             $table->date('data_nascimento');
             $table->timestamps();
+            $table->unsignedBigInteger('especie_id');
+            $table->foreign('especie_id')
+                ->references('id')
+                ->on('especie')
+                ->onDelete('cascade');
+
+//            $table->foreign('especies_id')
+
         });
 
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('pets');

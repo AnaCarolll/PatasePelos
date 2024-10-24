@@ -9,20 +9,17 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
+use App\Controller\PetsController;
 use Hyperf\HttpServer\Router\Router;
 
-//Router::addRoute(['POST'], '/registro', 'App\Controller\PetsController@register');
-
-Router::addGroup('/pet/', function (){
-    Router::post('registro','App\Controller\PetsController@register');
-    Router::get('listagem','App\Controller\PetsController@list');
-    Router::delete('deletar','App\Controller\PetsController@delete');
-    Router::put('atualizar','App\Controller\PetsController@update');
+Router::addGroup('/pet', function (){
+    Router::get('',[PetsController::class, 'index']);  //lista todos
+    Router::get('/{id}',[PetsController::class, 'show']);  //lista um em especifico
+    Router::post('',[PetsController::class, 'store']); //cadastro de pets
+    Router::put('/{id}',[PetsController::class, 'update']);
+    Router::delete('/{id}',[\App\Controller\PetsController::class, 'destroy']);
 });
 
 
 
-
-//Router::get('/favicon.ico', function () {
-//    return 'aopa';
-//});
