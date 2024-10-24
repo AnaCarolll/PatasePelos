@@ -17,14 +17,14 @@ class PetsController extends AbstractController
 
         if(empty($data['nome']) || empty($data['data_nascimento'])){
             return $this->response->json([
-                'error' => 'invalid data'
+                'error'=>'invalid data'
             ], 400);
         }
 
         //insere dados no banco
 
-        $pets = Pet::create([
-            'nome' => $data['nome'],
+        $pet = Pet::create([
+            'nome'=>$data['nome'],
             'data_nascimento' => $data['data_nascimento'],
         ]);
 
@@ -32,13 +32,12 @@ class PetsController extends AbstractController
 
         return $this->response->json([
             'message'=>'pets cadastrado com sucesso!',
-            'pets'=>$pets
+            'pet'=>$pet
         ]);
     }
 
     public function index()
     {
-        $pets =  Pet::all();
         $pets = Pet::paginate(10);
 
         if ($pets->isEmpty()){
@@ -101,19 +100,11 @@ class PetsController extends AbstractController
                 'menssage'=>'O pet não foi encontrado!',
             ]);
         }
-        $pet->nome = $data['nome']?? $pet -> nome;
+//        $pet->nome = $data['nome']?? $pet -> nome;
 
         if(isset($data['data_nascimento'])){
-            $pet ->data_nascimento =  Carbon::createFromFormat('d/m/Y', $data['data_nascimento'])->format('Y-m-d');
+            $data['data_nascimento'] = Carbon::createFromFormat('d/m/Y', $data['data_nascimento'])->format('Y-m-d');
         }
-
-
-        $pet->save();
-
-            return $this->response->json([
-            'message'=>'pet atualizado com sucesso!',
-            'data'=>$pet,
-
-       ]);
+        $pet ->update($data);
     }
 }
